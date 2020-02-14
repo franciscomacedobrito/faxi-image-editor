@@ -1,13 +1,13 @@
 {
   "name": "faxi-image-editor",
   "author": "Faxi",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/franciscomacedobrito/faxi-image-editor.git"
   },
-  "main": "/src/index.js",
+  "main": "dist/faxi-image-editor.js",
   "files": [
     "src",
     "dist",
@@ -73,7 +73,7 @@
     "test": "karma start --no-single-run",
     "test:ne": "KARMA_SERVER=ne karma start",
     "test:types": "tsc --project test/types",
-    "bundle": "webpack && webpack -p && npm run bundle:svg && node tsBannerGenerator.js",
+    "bundle": "webpack && webpack -p && node tsBannerGenerator.js",
     "bundle:svg": "node makesvg.js",
     "serve": "webpack-dev-server",
     "doc:dev": "tuidoc --dev",

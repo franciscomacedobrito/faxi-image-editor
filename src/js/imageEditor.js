@@ -140,6 +140,7 @@ class ImageEditor {
 
         this._attachInvokerEvents();
         this._attachGraphicsEvents();
+        this._attachPhotoEvents();
         this._attachDomEvents();
         this._setSelectionStyle(options.selectionStyle, {
             applyCropSelectionStyle: options.applyCropSelectionStyle,
@@ -266,6 +267,27 @@ class ImageEditor {
          * });
          */
         this._invoker.on(REDO_STACK_CHANGED, this.fire.bind(this, REDO_STACK_CHANGED));
+    }
+
+    /**
+     * Attach photo events
+     * @private
+     */
+    _attachPhotoEvents() {
+        const {
+            SAVE_CLICKED
+        } = events;
+
+        /**
+         * Save photo event
+         * @event ImageEditor#saveClicked
+         * @param {Number} length - undo stack length
+         * @example
+         * imageEditor.on('saveClicked', function(length) {
+         *     console.log(length);
+         * });
+         */
+        this.fire.bind(this, SAVE_CLICKED);
     }
 
     /**
@@ -571,6 +593,18 @@ class ImageEditor {
      */
     undo() {
         return this._invoker.undo();
+    }
+
+    /**
+     * Save
+     * @returns {Promise}
+     * @example
+     * imageEditor.undo();
+     */
+    save() {
+        alert('asasas');
+
+        return this.fire(events.SAVE_CLICKED);
     }
 
     /**

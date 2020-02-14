@@ -1,6 +1,6 @@
 /*!
  * faxi-image-editor.js
- * @version 0.0.1
+ * @version 0.0.8
  * @author Faxi
  * @license MIT
  */
@@ -51,48 +51,55 @@ body > textarea {
   width: 30%;
   padding: 17px;
 }
-.tui-image-editor-container .tui-image-editor-controls-logo,
-.tui-image-editor-container .tui-image-editor-controls-buttons {
-  width: 270px;
+.tui-image-editor-container .tui-image-editor-top-bar {
+  width: 100%;
+  position: absolute;
+  height: 58px;
+  align-items: center;
+}
+.tui-image-editor-container .tui-image-editor-top-bar .tui-image-editor-controls-history-buttons {
+  justify-content: center;
   height: 100%;
-  display: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.tui-image-editor-container .tui-image-editor-top-bar .tui-image-editor-controls-history-buttons .tui-image-editor-controls-history-buttons-container {
+  margin-left: 25%;
+  display: flex;
+}
+.tui-image-editor-container .tui-image-editor-top-bar .tui-image-editor-controls-history-buttons .tui-image-editor-item {
+  margin: 10px !important;
+}
+.tui-image-editor-container .tui-image-editor-top-bar .tui-image-editor-controls-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 .tui-image-editor-container .tui-image-editor-header-buttons button,
 .tui-image-editor-container .tui-image-editor-header-buttons div,
 .tui-image-editor-container .tui-image-editor-controls-buttons button,
 .tui-image-editor-container .tui-image-editor-controls-buttons div {
-  display: inline-block;
-  position: relative;
-  width: 120px;
-  height: 40px;
-  padding: 0;
-  line-height: 40px;
-  outline: none;
+  display: flex;
+  width: 34px;
+  height: 34px;
   border-radius: 20px;
-  border: 1px solid #ddd;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
   cursor: pointer;
-  vertical-align: middle;
-  letter-spacing: 0.3px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 }
 .tui-image-editor-container .tui-image-editor-download-btn {
-  background-color: #fdba3b;
-  border-color: #fdba3b;
-  color: #fff;
+  border: none;
 }
-.tui-image-editor-container .tui-image-editor-load-btn {
-  position: absolute;
-  left: 0;
-  right: 0;
-  display: inline-block;
-  top: 0;
-  bottom: 0;
-  width: 100%;
+.tui-image-editor-container .tui-image-editor-save-btn {
   cursor: pointer;
-  opacity: 0;
+  height: 34px;
+  width: 34px;
+  opacity: 0.3;
+  transition: opacity ease-out 0.3s;
+}
+.tui-image-editor-container .tui-image-editor-save-btn:hover {
+  opacity: 1;
 }
 .tui-image-editor-container .tui-image-editor-main-container {
   position: absolute;
@@ -126,6 +133,9 @@ body > textarea {
 .tui-image-editor-container .tui-image-editor {
   position: relative;
   display: inline-block;
+  box-shadow: 0 6px 7px -4px #000, 0 11px 15px 1px rgba(0,0,0,0.039), 0 4px 20px 3px rgba(0,0,0,0);
+  border-radius: 8px;
+  overflow: hidden;
 }
 .tui-image-editor-container .tui-image-editor-menu {
   width: auto;
@@ -139,43 +149,26 @@ body > textarea {
 }
 .tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item {
   position: relative;
-  display: inline-block;
-  border-radius: 2px;
   padding: 7px 8px 3px 8px;
   cursor: pointer;
-  margin: 0 4px;
+  border-right: solid 2px transparent;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 58px;
 }
-.tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item[tooltip-content]:hover:before {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  margin: 0 auto 0;
-  width: 0;
-  height: 0;
-  border-right: 7px solid transparent;
-  border-top: 7px solid #2f2f2f;
-  border-left: 7px solid transparent;
-  left: 13px;
-  top: -2px;
-}
-.tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item[tooltip-content]:hover:after {
-  content: attr(tooltip-content);
-  position: absolute;
-  display: inline-block;
-  background-color: #2f2f2f;
-  color: #fff;
-  padding: 5px 8px;
-  font-size: 11px;
-  font-weight: lighter;
-  border-radius: 3px;
-  max-height: 23px;
-  top: -25px;
-  left: 0;
-  min-width: 24px;
+.tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item:hover {
+  border-right: solid 2px #f3a008;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 .tui-image-editor-container .tui-image-editor-menu > .tui-image-editor-item.active {
-  background-color: #fff;
+  border-right: solid 2px #f3a008;
   transition: all 0.3s ease;
+  width: 100%;
+  background: rgba(255,255,255,0.039);
 }
 .tui-image-editor-container .tui-image-editor-wrap {
   position: absolute;

@@ -71,7 +71,9 @@ module.exports = {
         REDO_STACK_CHANGED: 'redoStackChanged',
         UNDO_STACK_CHANGED: 'undoStackChanged',
         SELECTION_CLEARED: 'selectionCleared',
-        SELECTION_CREATED: 'selectionCreated'
+        SELECTION_CREATED: 'selectionCreated',
+        // PHOTO_EVENTS
+        SAVE_CLICKED: 'saveClicked'
     },
 
     /**

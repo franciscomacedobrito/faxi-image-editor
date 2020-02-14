@@ -66,13 +66,11 @@ class Ui {
         this._initMenuEvent = false;
 
         this._els = {
-            'undo': this._menuElement.querySelector('.tie-btn-undo'),
-            'redo': this._menuElement.querySelector('.tie-btn-redo'),
-            'reset': this._menuElement.querySelector('.tie-btn-reset'),
-            'delete': this._menuElement.querySelector('.tie-btn-delete'),
-            'deleteAll': this._menuElement.querySelector('.tie-btn-delete-all'),
+            'undo': document.querySelector('.tie-btn-undo'),
+            'redo': document.querySelector('.tie-btn-redo'),
+            'reset': document.querySelector('.tie-btn-reset'),
             'download': this._selectedElement.querySelectorAll('.tui-image-editor-download-btn'),
-            'load': this._selectedElement.querySelectorAll('.tui-image-editor-load-btn')
+            'save': this._selectedElement.querySelectorAll('.tui-image-editor-save-btn')
         };
 
         this._makeSubMenu();
@@ -188,32 +186,6 @@ class Ui {
             this._els.reset.classList.add('enabled');
         } else {
             this._els.reset.classList.remove('enabled');
-        }
-    }
-
-    /**
-     * Change delete-all button status
-     * @param {Boolean} enableStatus - enabled status
-     * @ignore
-     */
-    changeDeleteAllButtonEnabled(enableStatus) {
-        if (enableStatus) {
-            this._els.deleteAll.classList.add('enabled');
-        } else {
-            this._els.deleteAll.classList.remove('enabled');
-        }
-    }
-
-    /**
-     * Change delete button status
-     * @param {Boolean} enableStatus - enabled status
-     * @ignore
-     */
-    changeDeleteButtonEnabled(enableStatus) {
-        if (enableStatus) {
-            this._els['delete'].classList.add('enabled');
-        } else {
-            this._els['delete'].classList.remove('enabled');
         }
     }
 
@@ -376,13 +348,13 @@ class Ui {
     }
 
     /**
-     * Add load event
+     * Add save event
      * @private
      */
-    _addLoadEvent() {
-        snippet.forEach(this._els.load, element => {
-            element.addEventListener('change', event => {
-                this._actions.main.load(event.target.files[0]);
+    _addSaveEvent() {
+        snippet.forEach(this._els.save, element => {
+            element.addEventListener('click', () => {
+                this._actions.main.save();
             });
         });
     }
@@ -428,8 +400,6 @@ class Ui {
         this._addHelpActionEvent('undo');
         this._addHelpActionEvent('redo');
         this._addHelpActionEvent('reset');
-        this._addHelpActionEvent('delete');
-        this._addHelpActionEvent('deleteAll');
 
         this._addDownloadEvent();
 
@@ -453,7 +423,8 @@ class Ui {
             });
         }
 
-        this._addLoadEvent();
+        // this._addLoadEvent();
+        this._addSaveEvent();
 
         const gridVisual = document.createElement('div');
         gridVisual.className = 'tui-image-editor-grid-visual';

@@ -41,47 +41,54 @@ body > textarea
         width: 30%;
         padding: 17px;
 
-    .-controls-logo,
-    .-controls-buttons
-        width: 270px;
-        height: 100%;
-        display: none;
+    .-top-bar
+        width: 100%;
+        position: absolute;
+        height: 58px;
+        align-items: center;
+
+        .-controls-history-buttons
+            justify-content: center;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            .-controls-history-buttons-container
+                margin-left: 25%;
+                display: flex;
+
+            .-item
+                margin 10px !important;
+
+
+        .-controls-buttons
+            display: flex;
+            justify-content: flex-end;
 
     .-header-buttons button,
     .-header-buttons div,
     .-controls-buttons button,
     .-controls-buttons div
-        display: inline-block;
-        position: relative;
-        width: 120px;
-        height: 40px;
-        padding: 0;
-        line-height: 40px;
-        outline: none;
+        display: flex;
+        width: 34px;
+        height: 34px;
         border-radius: 20px;
-        border: 1px solid #ddd;
-        font-family: 'Noto Sans', sans-serif;
-        font-size: 12px;
-        font-weight: bold;
         cursor: pointer;
-        vertical-align: middle;
-        letter-spacing: 0.3px;
-        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
 
     .-download-btn
-        background-color: #fdba3b;
-        border-color: #fdba3b;
-        color: #fff;
-    .-load-btn
-        position: absolute;
-        left: 0;
-        right: 0;
-        display: inline-block;
-        top: 0;
-        bottom: 0;
-        width: 100%;
+        border: none
+    .-save-btn
         cursor: pointer;
-        opacity: 0;
+        height: 34px;
+        width: 34px;
+        opacity: 0.3;
+        transition: opacity ease-out 0.3s;
+    .-save-btn:hover
+        opacity 1
     .-main-container
         position: absolute;
         width: 100%;
@@ -109,6 +116,9 @@ body > textarea
     .
         position: relative;
         display: inline-block;
+        box-shadow: 0 6px 7px -4px rgb(0, 0, 0), 0 11px 15px 1px #0000000a, 0 4px 20px 3px rgba(0, 0, 0, 0);
+        border-radius: 8px;
+        overflow: hidden;
 
 
 /* BIG MENU */
@@ -124,40 +134,23 @@ body > textarea
         white-space: nowrap;
         > .{prefix}-item
             position: relative;
-            display: inline-block;
-            border-radius: 2px;
             padding: 7px 8px 3px 8px;
             cursor: pointer;
-            margin: 0 4px;
-        > .{prefix}-item[tooltip-content]:hover
-            &:before
-                content: '';
-                position: absolute;
-                display: inline-block;
-                margin: 0 auto 0;
-                width: 0;
-                height: 0;
-                border-right: 7px solid transparent;
-                border-top: 7px solid #2f2f2f;
-                border-left: 7px solid transparent;
-                left: 13px;
-                top: -2px;
-            &:after
-                content: attr(tooltip-content);
-                position: absolute;
-                display: inline-block;
-                background-color: #2f2f2f;
-                color: #fff;
-                padding: 5px 8px;
-                font-size: 11px;
-                font-weight: lighter;
-                border-radius: 3px;
-                max-height: 23px;
-                top: -25px;
-                left: 0;
-                min-width: 24px;
-        > .{prefix}-item.active
-            background-color: #fff;
+            border-right: solid 2px transparent;
             transition: all .3s ease;
+            width: 100%;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            height: 58px;
+        > .{prefix}-item:hover
+            border-right: solid 2px #f3a008;
+            transition: all .3s ease;
+            width: 100%
+        > .{prefix}-item.active
+            border-right: solid 2px #f3a008;
+            transition: all .3s ease;
+            width: 100%;
+            background: #ffffff0a;
     .{prefix}-wrap
         position: absolute;

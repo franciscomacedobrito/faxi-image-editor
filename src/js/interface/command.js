@@ -43,6 +43,12 @@ class Command {
         this.undo = actions.undo;
 
         /**
+         * Save function
+         * @type {function}
+         */
+        this.save = actions.save;
+
+        /**
          * executeCallback
          * @type {function}
          */

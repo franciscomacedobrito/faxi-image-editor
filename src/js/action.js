@@ -69,6 +69,11 @@ export default {
                     this.undo().then(onEndUndoRedo);
                 }
             },
+            save: () => {
+                exitCropOnAction();
+                this.deactivateAll();
+                this.fire('saveClicked');
+            },
             redo: () => {
                 if (!this.isEmptyRedoStack()) {
                     exitCropOnAction();
@@ -426,9 +431,6 @@ export default {
             /* eslint-disable complexity */
             objectActivated: obj => {
                 this.activeObjectId = obj.id;
-
-                this.ui.changeDeleteButtonEnabled(true);
-                this.ui.changeDeleteAllButtonEnabled(true);
 
                 if (obj.type === 'cropzone') {
                     this.ui.crop.changeApplyButtonStatus(true);
